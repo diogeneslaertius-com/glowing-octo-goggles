@@ -63,27 +63,30 @@ void AnimatedRobot::Reset(const glm::vec3& spawnPos, RobotType type) {
 
 	// Разные параметры для разных типов роботов
 	switch (type) {
-	case BASIC_ROBOT:
+	case BASIC_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		hp = maxHp = 100.0f;
 		speed = 2.0f;
 		idleAnimSpeed = 1.0f;
 		walkAnimSpeed = 2.0f;
 		break;
+	}
 
-	case TEMPORAL_HUNTER_ROBOT:
+	case TEMPORAL_HUNTER_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		hp = maxHp = 150.0f; // больше HP
 		speed = 1.5f; // медленнее, но опаснее
 		idleAnimSpeed = 0.8f;
 		walkAnimSpeed = 1.8f;
 		glitchAmount = 0.3f; // постоянный глитч-эффект
 		break;
+	}
 
-	case GLITCH_ROBOT:
+	case GLITCH_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		hp = maxHp = 75.0f; // меньше HP
 		speed = 3.0f; // быстрее
 		idleAnimSpeed = 2.0f;
 		walkAnimSpeed = 3.0f;
 		break;
+	}
 	}
 
 	position = spawnPos;
@@ -189,14 +192,15 @@ glm::mat4 AnimatedRobot::GetModelMatrix() const {
 
 	// Простая "анимация" - разные эффекты для разных роботов
 	switch (robotType) {
-	case BASIC_ROBOT:
+	case BASIC_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		// Простое покачивание при движении
 		if (isMoving) {
 			model = glm::rotate(model, sin(animationTime * 8.0f) * 0.05f, glm::vec3(0, 0, 1));
 		}
 		break;
+	}
 
-	case TEMPORAL_HUNTER_ROBOT:
+	case TEMPORAL_HUNTER_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		// Медленное вращение + глитч-дрожание
 		model = glm::rotate(model, animationTime * 0.3f, glm::vec3(0, 1, 0));
 		if (glitchAmount > 0.0f) {
@@ -208,12 +212,14 @@ glm::mat4 AnimatedRobot::GetModelMatrix() const {
 			model = glm::translate(model, glitchOffset);
 		}
 		break;
+	}
 
-	case GLITCH_ROBOT:
+	case GLITCH_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		// Хаотичное движение
 		model = glm::rotate(model, sin(animationTime * 15.0f) * 0.2f, glm::vec3(1, 0, 0));
 		model = glm::rotate(model, cos(animationTime * 12.0f) * 0.1f, glm::vec3(0, 0, 1));
 		break;
+	}
 	}
 
 	// Размер (можно варьировать для разных типов)
@@ -242,32 +248,48 @@ glm::vec4 AnimatedRobot::GetColor() const {
 
 glm::vec3 AnimatedRobot::GetBaseColor() const {
 	switch (robotType) {
-	case BASIC_ROBOT:
+	case BASIC_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		return glm::vec3(0.8f, 0.3f, 0.3f); // красный
+	}
 
-	case TEMPORAL_HUNTER_ROBOT:
+	case TEMPORAL_HUNTER_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		// Мерцающий фиолетовый с глитч-эффектом
 		float glitchPulse = sin(animationTime * 10.0f) * 0.3f + 0.7f;
 		return glm::vec3(0.8f * glitchPulse, 0.2f, 0.8f * glitchPulse);
+	}
 
-	case GLITCH_ROBOT:
+	case GLITCH_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		// Хаотично меняющийся цвет
 		return glm::vec3(
 			0.5f + sin(animationTime * 7.0f) * 0.3f,
 			0.5f + sin(animationTime * 11.0f) * 0.3f,
 			0.5f + sin(animationTime * 13.0f) * 0.3f
 		);
+	}
 
-	default:
+	default: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		return glm::vec3(0.5f, 0.5f, 0.5f);
+	}
 	}
 }
 
 Model* AnimatedRobot::GetCurrentModel() const {
 	switch (robotType) {
-	case TEMPORAL_HUNTER_ROBOT:
+	case TEMPORAL_HUNTER_ROBOT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		return s_HunterRobotModel.get();
-	default:
+	}
+	default: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 		return s_BasicRobotModel.get();
 	}
+	}
+}
+
+void AnimatedRobot::Draw() const {
+	if (!active) return;
+
+	Model* currentModel = GetCurrentModel();
+	if (currentModel) {
+		currentModel->Draw();
+	}
+	// Если модели нет, то рендер будет использовать fallback куб из основного кода
 }

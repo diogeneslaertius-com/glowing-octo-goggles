@@ -23,7 +23,8 @@
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
 
-void InitImGui(GLFWwindow* window) {
+void InitImGui(GLFWwindow* window) 
+{
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -39,7 +40,8 @@ void InitImGui(GLFWwindow* window) {
 	ImGui_ImplOpenGL3_Init("#version 430");
 }
 
-void DrawWeaponHUD(const glm::mat4& projection, const glm::mat4& view, Shader& shader) {
+void DrawWeaponHUD(const glm::mat4& projection, const glm::mat4& view, Shader& shader) 
+{
 	// Рисуем простой прицел в центре экрана
 	// Это будет простая модель оружия или линии прицела
 
@@ -71,7 +73,7 @@ int main(void) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(1200, 800, "Time Crisis Shooter - Hackathon Demo", NULL, NULL);
+	window = glfwCreateWindow(800, 600, "Hackathon Demo", NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		return -1;
@@ -129,6 +131,10 @@ int main(void) {
 
 	Mechanics mechanicsHandler(&camera);
 	EnemyPool enemyPool(30); // увеличили пул до 30 врагов
+
+	// === КРИТИЧЕСКИ ВАЖНАЯ СТРОКА - ИСПРАВЛЯЕТ ОШИБКУ C2027 ===
+	mechanicsHandler.SetEnemyPool(&enemyPool);
+
 	Terrain terrain(50.0f, 0.0f);
 
 	// Система волн
@@ -147,7 +153,7 @@ int main(void) {
 	// Модели и эффекты
 	std::vector<Beam> beams;
 	Model enemyModel("assets/cube.obj"); // fallback куб для врагов
-	Model weaponModel("assets/weapon.obj"); // модель оружия (опционально)
+	Model weaponModel("assets/weapon.fbx"); // модель оружия (опционально)
 
 	float lastTime = 0.0f;
 	bool lastShotState = false;

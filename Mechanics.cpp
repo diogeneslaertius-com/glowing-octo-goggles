@@ -1,5 +1,7 @@
 ﻿#define GLM_ENABLE_EXPERIMENTAL
 #include "Mechanics.h"
+#include "EnemyPool.h"  // ДОБАВЛЕНО для исправления ошибки C2027
+#include "Camera.h"     // ДОБАВЛЕНО (если нужно)
 #include <glm/gtx/intersect.hpp>
 #include <iostream>
 #include <algorithm>
@@ -40,7 +42,7 @@ const float MAX_HISTORY_TIME = 10.0f; // 10 секунд истории макс
 // Конструктор
 // ----------------------------------------------------------------------
 Mechanics::Mechanics(Camera* camera)
-	: m_Camera(camera)
+	: m_Camera(camera), m_EnemyPool(nullptr)  // ДОБАВЛЕНО инициализацию m_EnemyPool
 {
 	g_EventHistory.reserve(1000); // предзагружаем память
 }
@@ -164,12 +166,18 @@ void Mechanics::RewindTime(float secondsBack)
 	std::cout << "=== REWINDING TIME ===\n";
 	std::cout << "Current time: " << currentTime << ", Cutoff: " << cutoff << "\n";
 
+	// ДОБАВЛЕНА ПРОВЕРКА НА NULLPTR для безопасности
+	if (!m_EnemyPool) {
+		std::cerr << "ERROR: EnemyPool not set in Mechanics! Call SetEnemyPool() first.\n";
+		// Можно продолжить работу без восстановления врагов
+	}
+
 	// Проходим события в обратном порядке
 	for (auto it = g_EventHistory.rbegin(); it != g_EventHistory.rend(); ++it) {
 		if (it->time < cutoff) break;
 
 		switch (it->type) {
-		case EventType::HIT:
+		case EventType::HIT: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ для исправления потенциальных проблем
 			std::cout << "Rewinding HIT at (" << it->position.x << ", "
 				<< it->position.y << ", " << it->position.z << ")\n";
 
@@ -186,8 +194,9 @@ void Mechanics::RewindTime(float secondsBack)
 			g_RewindEffectPositions.push_back(it->position);
 			rewindedEvents++;
 			break;
+		}
 
-		case EventType::DEATH:
+		case EventType::DEATH: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 			std::cout << "Rewinding DEATH of entity " << it->entityID << "\n";
 			// Аналогично для смерти
 			if (m_EnemyPool && it->entityID >= 0) {
@@ -198,11 +207,13 @@ void Mechanics::RewindTime(float secondsBack)
 				}
 			}
 			break;
+		}
 
-		case EventType::BULLET_SPAWN:
+		case EventType::BULLET_SPAWN: {  // ДОБАВЛЕНЫ ФИГУРНЫЕ СКОБКИ
 			std::cout << "Rewinding BULLET spawn\n";
 			// removeBullet(it->entityID); // можешь добавить позже
 			break;
+		}
 
 		default:
 			break;

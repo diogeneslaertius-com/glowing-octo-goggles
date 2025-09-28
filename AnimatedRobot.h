@@ -22,7 +22,7 @@ public:
 	void Reset(const glm::vec3& spawnPos, RobotType type = BASIC_ROBOT);
 	void TakeDamage(float dmg);
 	void Update(float deltaTime, const glm::vec3& playerPos);
-	void Draw(); // если хочешь собственный рендер
+	void Draw() const; // ДОБАВЛЕНО const - исправляет ошибку C2662
 
 	// === ГЕТТЕРЫ ===
 	glm::mat4 GetModelMatrix() const;

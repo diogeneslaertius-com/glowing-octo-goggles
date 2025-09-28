@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Textures">
+      <UniqueIdentifier>{78cdccac-efcf-4918-9a69-7d2f806d0d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Graphics">
+      <UniqueIdentifier>{5331477b-dde4-487e-834e-51ddd3e3f324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Mechanics">
+      <UniqueIdentifier>{26ad0ecd-2dc3-497b-82d0-d355a1f043bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mainfile.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="3d.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Исходные файлы\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Mechanics.cpp">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Beam.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyPool.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotPool.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedRobot.cpp">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3d.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
+      <Filter>Исходные файлы\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Mechanics.h">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="Beam.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPool.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Исходные файлы\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotPool.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedRobot.h">
+      <Filter>Исходные файлы\Mechanics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment.glsl">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="vertex.glsl">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="..\sf 2025\Source1.shader">
+      <Filter>Исходные файлы\Graphics</Filter>
+    </None>
+  </ItemGroup>
+</Project>

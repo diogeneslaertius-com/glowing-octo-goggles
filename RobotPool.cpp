@@ -28,12 +28,6 @@ void RobotPool::UpdateAll(float deltaTime, const glm::vec3& playerPos) {
 	}
 }
 
-void RobotPool::DrawAll() {
-	for (const auto& robot : robots) {
-		if (!robot.IsActive()) continue;
-		robot.Draw();
-	}
-}
 
 void RobotPool::SpawnWaveCircle(int count, const glm::vec3& center, float radius,
 							   float hunterChance, float jitter) {
